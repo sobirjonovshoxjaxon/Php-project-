@@ -1,18 +1,22 @@
+<?php 
+
+  require 'adminpanel/connect.php';
+
+  $statement = $pdo->prepare('SELECT * FROM categories');
+  $statement->execute();
+  $categories = $statement->fetchAll();
+
+?>
+    
+    
     <div class="left_content">
         <div class="title_box">Categories</div>
         <ul class="left_menu">
-          <li class="odd"><a href="#">Power Tools</a></li>
-          <li class="even"><a href="#">Air Tools</a></li>
-          <li class="odd"><a href="#">Hand Tools</a></li>
-          <li class="even"><a href="#">Accessories</a></li>
-          <li class="odd"><a href="#">Workwear</a></li>
-          <li class="even"><a href="#">Spare Parts</a></li>
-          <li class="odd"><a href="#">Power Tools</a></li>
-          <li class="even"><a href="#">Air Tools</a></li>
-          <li class="odd"><a href="#">Hand Tools</a></li>
-          <li class="even"><a href="#">Accessories</a></li>
-          <li class="odd"><a href="#">Workwear</a></li>
-          <li class="even"><a href="#">Spare Parts</a></li>
+
+        <?php foreach($categories as $category): ?>
+          <li class="odd"><a href="#"><?= $category['category']; ?></a></li>
+        <?php endforeach; ?>
+
         </ul>
         <div class="title_box">Special Products</div>
         <div class="border_box">
