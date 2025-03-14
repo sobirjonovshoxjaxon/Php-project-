@@ -67,6 +67,16 @@
               </a>
               
             </li>
+
+
+            </li>
+
+              <a href="../posts/index.php" class="menu-toggle nav-link">
+                <i data-feather="briefcase"></i>
+                <span>Posts</span>
+              </a>
+
+              </li>
           </ul>
         </aside>
       </div>
