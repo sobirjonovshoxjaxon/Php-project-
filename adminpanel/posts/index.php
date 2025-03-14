@@ -1,5 +1,5 @@
 <?php 
-
+    $categories = "";
     require '../requires/header.php';
 ?>
 

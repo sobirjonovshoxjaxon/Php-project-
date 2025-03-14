@@ -1,6 +1,7 @@
 <?php 
+  $categories = "../categories/index.php";
     require '../requires/header.php';
-      require '../connect.php';
+    require '../connect.php';
                     
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
