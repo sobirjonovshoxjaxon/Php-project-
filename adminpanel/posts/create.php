@@ -1,49 +1,9 @@
 <?php 
-  $categories = "../categories/index.php";
+    $categories = "../categories/index.php";
     require '../requires/header.php';
     require '../connect.php';
                     
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-
-        $name = $_POST['name'];
-        $image = $_FILES['image'];
-        $available = $_POST['available'];
-        $warranties = $_POST['warranties'];
-        $price = $_POST['price'];
-        $oldprice = $_POST['oldprice'];
-        $description = $_POST['description'];
-       
-
-       // Faylni yuklash jarayoni 
-      $imagePath = 'uploads/'.basename($image['name']);
-
-      if(move_uploaded_file($image['tmp_name'],$imagePath)){
-
-        $statement = $pdo->prepare("INSERT INTO posts (name,image,available,warranties,price,oldprice,description) VALUES (:name,:image,:available,:warranties,:price,:oldprice,:description)");
-
-        $statement->execute([
-
-            'name'=> $_POST['name'],
-            'image'=> $imagePath,
-            'available'=> $_POST['available'],
-            'warranties'=> $_POST['warranties'],
-            'price'=> $_POST['price'],
-            'oldprice'=> $_POST['oldprice'],
-            'description'=> $_POST['description']
-
-        ]);
-
-        $_SESSION['post-created'] = 'Post created successfully';
-        header('location: index.php');
-        exit;
-
-      }else{
-
-        echo "Rasm yuklanmadi";
-      }
-
-      ob_end_flush();
-    }
+  
 
 
    
@@ -59,6 +19,57 @@
                     <h4>Create Post Form</h4>
 
                     <a href="" style="color: white;" class="btn btn-dark">Back</a>
+
+                    <?php 
+
+                      
+
+                      if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+                        $name = $_POST['name'];
+                        $image = $_FILES['image'];
+                        $available = $_POST['available'];
+                        $warranties = $_POST['warranties'];
+                        $price = $_POST['price'];
+                        $oldprice = $_POST['oldprice'];
+                        $description = $_POST['description'];
+                      
+                      
+
+                        // Faylni yuklash jarayoni 
+                        $imagePath = 'uploads/'.basename($image['name']);
+
+                        if(move_uploaded_file($image['tmp_name'],$imagePath)){
+                          
+                        
+                          $statement = $pdo->prepare("INSERT INTO posts (name,image,available,warranties,price,oldprice,description) VALUES (:name,:image,:available,:warranties,:price,:oldprice,:description)");
+
+                          $statement->execute([
+
+                              'name'=> $_POST['name'],
+                              'image'=> $imagePath,
+                              'available'=> $_POST['available'],
+                              'warranties'=> $_POST['warranties'],
+                              'price'=> $_POST['price'],
+                              'oldprice'=> $_POST['oldprice'],
+                              'description'=> $_POST['description']
+
+                          ]);
+
+                          $_SESSION['post-created'] = 'Post created successfully';
+                          header('location: index.php');
+                          exit;
+
+                        }else{
+
+                          echo "Rasm yuklanmadi";
+                        }
+
+                        ob_end_flush();
+                      }
+                    
+                    
+                    ?>
                   </div>
                   <div class="card-body">
 

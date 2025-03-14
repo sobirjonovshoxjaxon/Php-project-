@@ -1,6 +1,11 @@
 <?php 
     $categories = "";
     require '../requires/header.php';
+    require '../connect.php';
+
+    $statement = $pdo->prepare("SELECT * FROM posts");
+    $statement->execute();
+    $posts = $statement->fetchAll();
 ?>
 
     <!-- Main Content -->
@@ -14,6 +19,15 @@
                     <h4>Posts Table</h4>
                     <a href="create.php" class="btn btn-success">Create</a>
                   </div>
+
+                    <?php if(isset($_SESSION['post-created'])): ?>
+                      <div class="alert alert-success" role="alert">
+                        <?= $_SESSION['post-created']; ?>
+                        <?php unset($_SESSION['post-created']); ?>
+                      </div>
+                    <?php endif; ?>
+
+
                   <div class="card-body">
                     <div class="table-responsive">
                       <table class="table table-bordered table-md">
@@ -29,26 +43,31 @@
                           <th>Created_at</th>
                           <th colspan="3">Action</th>
                         </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>Name</td>
-                          <td>Image</td>
-                          <td>Available</td>
-                          <td>Warranties</td>
-                          <td>Description</td>
-                          <td>Price</td>
-                          <td>Old price</td>
-                          <td>45.56.122</td>
-                          <td>
-                            <a href="" class="btn btn-primary">Show</a>
-                          </td>
-                          <td>
-                            <a href="" class="btn btn-warning">Edit</a>
-                          </td>
-                          <td>
-                            <a href="" class="btn btn-danger">Delete</a>
-                          </td>
-                        </tr>
+
+                        <?php foreach($posts as $post): ?>
+                          <tr>
+                              <td><?= $post['id'] ?></td>
+                              <td><?= $post['name'] ?></td>
+                              <td>
+                                <img style="width: 100px;" src="<?= $post['image'] ?>" alt="">
+                              </td>
+                              <td><?= $post['available']; ?></td>
+                              <td><?= $post['warranties']; ?></td>
+                              <td><?= $post['description']; ?></td>
+                              <td><?= $post['price']; ?></td>
+                              <td><?= $post['oldprice']; ?></td>
+                              <td>45.56.122</td>
+                              <td>
+                                <a href="" class="btn btn-primary">Show</a>
+                              </td>
+                              <td>
+                                <a href="" class="btn btn-warning">Edit</a>
+                              </td>
+                              <td>
+                                <a href="" class="btn btn-danger">Delete</a>
+                              </td>
+                          </tr>
+                        <?php endforeach; ?>
                       </table>
                     </div>
                   </div>
