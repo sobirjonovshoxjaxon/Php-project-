@@ -1,11 +1,46 @@
 <?php 
-    $categories = "";
+    $categories = "../categories/index.php";
     require '../requires/header.php';
     require '../connect.php';
 
     $statement = $pdo->prepare("SELECT * FROM posts");
     $statement->execute();
     $posts = $statement->fetchAll();
+
+
+    //Delete Code 
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['DELETE'])){
+
+      $id = $_POST['post_id'];
+
+      //Faylni id bo'yicha olish
+      $statement = $pdo->prepare("SELECT image FROM posts WHERE id = ?");
+      $statement->execute([$id]);
+      $post = $statement->fetch();
+
+      if($post){
+
+        $image = $post['image'];
+
+        if(file_exists($image)){
+          unlink($image);
+        }
+
+        $statement = $pdo->prepare('DELETE FROM posts WHERE id = ?');
+        $statement->execute([$id]);
+
+        $_SESSION['post-deleted'] = "Post deleted successfully";
+      }else{
+
+        $_SESSION['post-deleted'] = 'Post not found';
+      }
+
+      header('location: index.php');
+      exit;
+
+      ob_end_flush();
+    }
+  
 ?>
 
     <!-- Main Content -->
@@ -27,7 +62,14 @@
                       </div>
                     <?php endif; ?>
 
+                    <?php if(isset($_SESSION['post-deleted'])): ?>
+                      <div class="alert alert-danger" role="alert">
+                        <?= $_SESSION['post-deleted']; ?>
+                        <?php unset($_SESSION['post-deleted']); ?>
+                      </div>
+                    <?php endif; ?>
 
+                    
                   <div class="card-body">
                     <div class="table-responsive">
                       <table class="table table-bordered table-md">
@@ -58,13 +100,19 @@
                               <td><?= $post['oldprice']; ?></td>
                               <td><?= $post['created_at']; ?></td>
                               <td>
-                                <a href="" class="btn btn-primary">Show</a>
+                                <a href="show.php?id=<?= $post['id']; ?>" class="btn btn-primary">Show</a>
                               </td>
                               <td>
-                                <a href="" class="btn btn-warning">Edit</a>
+                                <a href="edit.php?id=<?= $post['id']; ?>" class="btn btn-warning">Edit</a>
                               </td>
                               <td>
-                                <a href="" class="btn btn-danger">Delete</a>
+                                <form action="" method="POST">
+
+                                  <input type="hidden" name="DELETE">
+                                  <input type="hidden" name="post_id" value="<?= $post['id']; ?>">
+
+                                  <input type="submit" class="btn btn-danger" value="Delete">
+                                </form>
                               </td>
                           </tr>
                         <?php endforeach; ?>

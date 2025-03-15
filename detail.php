@@ -33,7 +33,19 @@
         <div class="prod_box_big">
             <div class="center_prod_box_big">
             <div class="product_img_big"> <a href="javascript:popImage('assets/images/big_pic.jpg','Some Title')" title="header=[Zoom] body=[&nbsp;] fade=[on]"><img style="width: 100px;" src="adminpanel/posts/<?= $post['image']; ?>" alt=""  /></a>
-                <div class="thumbs"> <a href="#" title="header=[Thumb1] body=[&nbsp;] fade=[on]"><img src="assets/images/thumb1.jpg" alt=""  /></a> <a href="#" title="header=[Thumb2] body=[&nbsp;] fade=[on]"><img src="assets/images/thumb2.jpg" alt=""  /></a> <a href="#" title="header=[Thumb3] body=[&nbsp;] fade=[on]"><img src="assets/images/thumb1.jpg" alt=""  /></a> </div>
+                <div class="thumbs"> 
+
+                    <a href="#" title="header=[Thumb1] body=[&nbsp;] fade=[on]">
+                        <img src="assets/images/thumb1.jpg" alt=""  />
+                    </a> 
+                    <a href="#" title="header=[Thumb2] body=[&nbsp;] fade=[on]">
+                        <img src="assets/images/thumb2.jpg" alt=""  />
+                    </a> 
+                    <a href="#" title="header=[Thumb3] body=[&nbsp;] fade=[on]">
+                        <img src="assets/images/thumb1.jpg" alt=""  />
+                    </a> 
+                    
+                </div>
             </div>
             <div class="details_big_box">
                 <div class="product_title_big"><?= $post['name']; ?></div>
