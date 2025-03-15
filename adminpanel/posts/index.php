@@ -56,7 +56,7 @@
                               <td><?= $post['description']; ?></td>
                               <td><?= $post['price']; ?></td>
                               <td><?= $post['oldprice']; ?></td>
-                              <td>45.56.122</td>
+                              <td><?= $post['created_at']; ?></td>
                               <td>
                                 <a href="" class="btn btn-primary">Show</a>
                               </td>

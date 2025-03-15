@@ -1,6 +1,14 @@
 <?php 
     $title = 'Product Detail';
     require 'includes/header.php';
+    require 'adminpanel/connect.php';
+
+    $id = $_GET['id'];
+
+    $statement = $pdo->prepare("SELECT * FROM posts WHERE id = ?");
+    $statement->execute([$id]);
+    $post = $statement->fetch();
+
 ?>
 
   <div id="main_content">
@@ -21,21 +29,21 @@
 
 
         <div class="center_content">
-        <div class="center_title_bar">Makita 156 MX-VL</div>
+        <div class="center_title_bar"><?= $post['name']; ?></div>
         <div class="prod_box_big">
             <div class="center_prod_box_big">
-            <div class="product_img_big"> <a href="javascript:popImage('assets/images/big_pic.jpg','Some Title')" title="header=[Zoom] body=[&nbsp;] fade=[on]"><img src="assets/images/p3.jpg" alt=""  /></a>
+            <div class="product_img_big"> <a href="javascript:popImage('assets/images/big_pic.jpg','Some Title')" title="header=[Zoom] body=[&nbsp;] fade=[on]"><img style="width: 100px;" src="adminpanel/posts/<?= $post['image']; ?>" alt=""  /></a>
                 <div class="thumbs"> <a href="#" title="header=[Thumb1] body=[&nbsp;] fade=[on]"><img src="assets/images/thumb1.jpg" alt=""  /></a> <a href="#" title="header=[Thumb2] body=[&nbsp;] fade=[on]"><img src="assets/images/thumb2.jpg" alt=""  /></a> <a href="#" title="header=[Thumb3] body=[&nbsp;] fade=[on]"><img src="assets/images/thumb1.jpg" alt=""  /></a> </div>
             </div>
             <div class="details_big_box">
-                <div class="product_title_big">Makita 156 MX-VL</div>
-                <div class="specifications"> Available: <span class="blue">In stock</span><br />
-                Warranties: <span class="blue">24 months</span><br />
+                <div class="product_title_big"><?= $post['name']; ?></div>
+                <div class="specifications"> Available: <span class="blue"><?= $post['available']; ?></span><br />
+                Warranties: <span class="blue"><?= $post['warranties']; ?></span><br />
                 Transport: <span class="blue"> delivery services company</span><br />
                 Include :<span class="blue"> TVA</span><br />
-                Description :<span class="blue"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </span><br />
+                Description :<span class="blue"><?= $post['description']; ?></span><br />
                 </div>
-                <div class="prod_price_big"><span class="reduce">350$</span> <span class="price">270$</span></div>
+                <div class="prod_price_big"><span class="reduce"><?= $post['oldprice']; ?></span> <span class="price"><?= $post['price']; ?></span></div>
                 <a href="#" class="prod_buy">add to cart</a> <a href="#" class="prod_compare">compare</a> </div>
             </div>
         </div>
