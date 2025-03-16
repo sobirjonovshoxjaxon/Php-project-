@@ -41,7 +41,7 @@
          
           
           <li class="dropdown">
-                <a href="auth-login.html" style="height: 50px;" class="dropdown-item has-icon text-danger"> 
+                <a href="<?= $logout; ?>" style="height: 50px;" class="dropdown-item has-icon text-danger"> 
                     <i style="font-size: 30px;" class="fas fa-sign-out-alt"></i>
                 </a>
           </li>

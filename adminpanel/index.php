@@ -1,4 +1,5 @@
 <?php 
+    $logout = 'logout.php';
     $categories = 'categories/index.php';
     require 'requires/header.php';
 ?>
