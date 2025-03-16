@@ -1,5 +1,7 @@
 <?php 
+    $logout = "../logout.php";
     $categories = "index.php";
+    $posts = '../posts/index.php';
     require '../requires/header.php'; 
     require '../connect.php';
     

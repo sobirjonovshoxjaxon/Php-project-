@@ -1,6 +1,7 @@
 <?php 
     $logout = 'logout.php';
     $categories = 'categories/index.php';
+    $posts = 'posts/index.php';
     require 'requires/header.php';
 ?>
       <!-- Main Content -->

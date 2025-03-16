@@ -71,7 +71,7 @@
 
             </li>
 
-              <a href="../posts/index.php" class="menu-toggle nav-link">
+              <a href="<?= $posts; ?>" class="menu-toggle nav-link">
                 <i data-feather="briefcase"></i>
                 <span>Posts</span>
               </a>
