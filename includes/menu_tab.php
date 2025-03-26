@@ -3,6 +3,8 @@
           <li><a href="index.php" class="nav">Home</a></li>
           <li class="divider"></li>
           <li><a href="contact.php" class="nav">Contact Us</a></li>
+          <li class="divider"></li>
+          <li><a href="../adminpanel/login.php" class="nav">Login</a></li>
         </ul>
       </div>
       

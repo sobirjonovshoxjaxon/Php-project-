@@ -49,6 +49,7 @@
     <div class="top_right">
       <div class="languages">
         <div class="lang_text">Languages:</div>
+       
         <a href="#" class="lang"><img src="assets/images/en.gif" alt=""  /></a> <a href="#" class="lang"><img src="assets/images/de.gif" alt=""  /></a> </div>
       <div class="big_banner"> <a href="#"><img src="assets/images/banner728.jpg" alt=""  /></a> </div>
     </div>
