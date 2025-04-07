@@ -29,6 +29,13 @@
         $statement->execute([$id]);
         $oldImage = $statement->fetch(); // fetchColoumn
 
+        if($oldImage){
+
+            if(file_exists($oldImage['image'])){
+                unlink($oldImage['image']);
+            }
+        }
+
         if(isset($image)){
 
             // Faylni yaratamiz
@@ -36,13 +43,8 @@
 
             if(move_uploaded_file($image['tmp_name'],$imagePath)){
 
-                $image = $post['image'];
-
-                if(file_exists($image)){
-                    unlink($image);
-                }
-
-                //Yangilash
+              
+                //Yangilash 
                 $statement = $pdo->prepare("UPDATE posts SET name = :name, image = :image, available = :available, warranties = :warranties, price = :price, oldprice = :oldprice, description = :description WHERE id = :id"); 
                 $statement->execute([
 
@@ -117,8 +119,8 @@
                         </div>
                     
                         <div class="form-group">
-                        <label>Description</label>
-                        <textarea class="form-control" name="description"><?= $post['description']; ?></textarea>
+                            <label>Description</label>
+                            <textarea class="form-control" name="description"><?= $post['description']; ?></textarea>
                         </div>
                     
                         

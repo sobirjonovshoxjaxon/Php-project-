@@ -71,6 +71,13 @@
                       </div>
                     <?php endif; ?>
 
+                    <?php if(isset($_SESSION['post-updated'])): ?>
+                      <div class="alert alert-warning" role="alert">
+                          <?= $_SESSION['post-updated']; ?>
+                          <?php unset($_SESSION['post-updated']); ?>
+                      </div>
+                    <?php endif; ?>
+
                     
                   <div class="card-body">
                     <div class="table-responsive">
